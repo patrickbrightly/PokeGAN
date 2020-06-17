@@ -3,7 +3,7 @@ from tensorflow.keras import layers
 
 def build_generator(input_size=(100,)):
     #Create the actual model as a sequential model
-    model = tf.keras.Sequential()
+    model = tf.keras.Sequential(name='generator')
     #Create the first layer with input 100, output the size of the next layer after reshaping
     model.add(layers.Dense(4*4*1024, use_bias=False, input_shape=(input_size)))
     model.add(layers.BatchNormalization())
@@ -24,12 +24,12 @@ def build_generator(input_size=(100,)):
     model.add(layers.LeakyReLU())
     #Final Conv2DTranspose Layer, output will be shaped (64,64,3)
     model.add(layers.Conv2DTranspose(3,(5,5),(2,2),padding='same',use_bias=False, activation='tanh'))
-    
+    model.summary()
     return model
 
 def build_discriminator():
     #Create the actual model as a sequential model
-    model = tf.keras.Sequential()
+    model = tf.keras.Sequential(name='discriminator')
     #convolve-dropout-activate
     model.add(layers.Conv2D(64,(4,4),(2,2),padding='same',use_bias=False,input_shape=(64,64,3)))
     model.add(layers.LeakyReLU())
@@ -46,4 +46,5 @@ def build_discriminator():
     model.add(layers.Flatten())
     #output
     model.add(layers.Dense(1))
+    model.summary()
     return model
