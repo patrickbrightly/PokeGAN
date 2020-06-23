@@ -10,7 +10,7 @@ Using a Deep Convolutional Generative Adverserial Network (DCGAN) to generate fa
 Gen 1 | Gen 2 | Gen 3 | Gen 4 | Gen 5
 ------|-------|-------|-------|------
 ![gen1](images/g1blue.png "Blue Bulbasaur")|![gen2](images/g2gold.png "Gold Bulbasaur")|![gen3](images/g3emerald.png "Emerald Bulbasaur")|![gen4](images/g4diamond.png "Diamond Bulbasaur")|![gen5](images/g5black.png "Black Bulbasaur")
-![gen1](images/g1red.png "Red Bulbasaur")|![gen2](images/g2silver.png "Silver Bulbasaur")|![gen3](images/g3ruby.png "Ruby Bulbasaur")|![gen4](images/g4plat.png "Platinum Bulbasaur")|![gen5](images/g5black.png "Black Bulbasaur")
+![gen1](images/g1red.png "Red Bulbasaur")|![gen2](images/g2silver.png "Silver Bulbasaur")|![gen3](images/g3ruby.png "Ruby Bulbasaur")|![gen4](images/g4plat.png "Platinum Bulbasaur")|
 ![gen1](images/g1yellow.png "Yellow Bulbasaur")|![gen2](images/g2crystal.png "Crystal Bulbasaur")||![gen4](images/g4soulsilver.png "SSilver Bulbasaur")|
 
 * All Unown sprites were removed due to their similarity to letters and drastic difference aesthetically to other pokemon. What a boring pokemon!
