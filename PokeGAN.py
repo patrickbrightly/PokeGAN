@@ -8,14 +8,19 @@ from PIL import Image
 import time
 import os
 
-BATCH_SIZE = 32
-NUM_EPOCHS = 50
+BATCH_SIZE = 64
+NUM_EPOCHS = 300
 INPUT_DIM = 100
 DATA_PATH = './data/gen4up/'
 RESULT_PATH = './results/pokemon/'
+CHECKPOINT_DIR = './checkpoint/'
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 
+
+if not os.path.exists(RESULT_PATH):
+            print(RESULT_PATH,'did not exist, new directory created')
+            os.makedirs(RESULT_PATH)
 
 #Load and prepare dataset
 #normalize the inputs between -1 and 1
@@ -47,20 +52,38 @@ gen_loss = define_loss.gen_loss
 
 #Set up optimizers
 #Some contention on LR of 0.0001 or 0.0002. Also default beta of 0.9 or 0.5?
-gen_optimizer = tf.keras.optimizers.Adam(learning_rate=0.0002)
+#Beta of 0.5 gives more visually convincing results than the default of 0.9
+gen_optimizer = tf.keras.optimizers.Adam(learning_rate=0.0002,beta_1=0.7)
 #a paper suggests using SGD for the discriminator
-disc_optimizer = tf.keras.optimizers.Adam(learning_rate=0.0002)
+disc_optimizer = tf.keras.optimizers.Adam(learning_rate=0.0002,beta_1=0.7)
+
+checkpoint = tf.train.Checkpoint(generator_optimizer=gen_optimizer, discriminator_optimizer=disc_optimizer,
+                                 generator=generator, discriminator=discriminator)
 
 #create a reference vector to get visual feedback on performance
-reference_vectors = tf.random.normal((25,100))
+reference_vectors = tf.random.normal((100,100))
 
 gen_loss_hist = []
 disc_loss_hist = []
 
 #a single training step, generator makes BATCH_SIZE images, discriminator decides on 2x sample? (confirm?)
 #adapted from the method at the tf tutorials https://www.tensorflow.org/tutorials/generative/dcgan
+#takes a set of real 
 @tf.function
 def train_step(real_ims):
+    """trains the generator and discriminator for one batch of real images
+
+    Parameters
+    ----------
+    real_ims : tensor, likely an EagerTensor
+        The tensor containing the batch of real images to train the discriminator on
+
+    Returns
+    -------
+    tuple
+        a tuple containing the generator loss and the discriminator loss for the training batch
+    """
+
     #Generate noise vectors
     noise = tf.random.normal((BATCH_SIZE,INPUT_DIM))
     
@@ -90,21 +113,26 @@ def train(dataset, epochs):
         #set up a timer to get an idea of training per epoch
         start = time.time()
 
-        #in each
+        #train each batch
         for image_batch in dataset:
             l = train_step(image_batch)
             gen_loss_hist.append(l[0])
             disc_loss_hist.append(l[1])
 
-        
+        # Save the model every 25 epochs
+        if (epoch + 1) % 25 == 0:
+            checkpoint.save(file_prefix = os.path.join(CHECKPOINT_DIR,'checkpoint'))
+            
+        #saves the images generated using the reference vectors created
         helper.save_image_grid(generator,epoch+1,reference_vectors,RESULT_PATH)
 
-        print ('Time for epoch {} is {} sec'.format(epoch + 1, time.time()-start))
+        print ('Time for epoch {} is {:.2f} sec'.format(epoch + 1, time.time()-start))
+        print ('Losses:\t Generator:  --  {:.4f} \t Discriminator: --  {:.4f} '.format(gen_loss_hist[-1],disc_loss_hist[-1]))
 
         
 train(dataset,NUM_EPOCHS)
 
 #Analyse Data
-#TODO graph losses over time
+helper.graph_losses(gen_loss_hist,disc_loss_hist,RESULT_PATH)
 
 #https://github.com/soumith/ganhacks has some awesome tips to optimize!
