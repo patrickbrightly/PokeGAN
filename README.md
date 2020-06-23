@@ -32,12 +32,17 @@ Gen 1 | Gen 2 | Gen 3 | Gen 4 | Gen 5
     * This outputs a score, which should be 1 if the image is real, 0 if fake
 
 ## Results
+### Epoch 1
 ![epoch 1](images/epoch_0001.png "Sprites after 1 epoch")
+### Epoch 100
 ![epoch 100](images/epoch_0100.png "Sprites after 100 epochs")
+### Epoch 200
 ![epoch 200](images/epoch_0200.png "Sprites after 200 epochs")
+### Epoch 300
 ![epoch 300](images/epoch_0300.png "Sprites after 300 epochs")
 
 Here are a few of my favourites!
+
 ![](images/1002_fake.png)![](images/998_fake.png)![](images/037_fake.png)![](images/326_fake.png)![](images/531_fake.png)![](images/708_fake.png)
 
 ## Next Steps
