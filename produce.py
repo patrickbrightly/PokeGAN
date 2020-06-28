@@ -5,7 +5,7 @@ import helper
 from PIL import Image
 
 CHECKPOINT_DIR = './checkpoint/'
-RESULTS_DIR='./results/pokemon/ind/'
+RESULTS_DIR='./results/gen4up/ind/'
 
 generator = create_models.build_generator()
 discriminator = create_models.build_discriminator()
@@ -25,14 +25,14 @@ def generate_images():
 
 def generate_and_discriminate(cutoff=0.5):
     images = []
-    while len(images)<100:
+    while len(images)<1000:
         noise = tf.random.normal((2000,100))
         fake = generator(noise,training=False)
         predictions = discriminator(fake,training=False)
         for x in range(len(predictions)):
             if predictions[x]>cutoff:
                 images.append(np.asarray((fake[x]*127.5)+127.5).astype('uint8'))
-        print(len(images),'/100')
+        print(len(images),'/1000')
     return np.array(images)
 
 images = generate_and_discriminate(0.9)

@@ -43,7 +43,7 @@ Gen 1 | Gen 2 | Gen 3 | Gen 4 | Gen 5
 
 Here are a few of my favourites!
 
-![](images/1002_fake.png)![](images/998_fake.png)![](images/037_fake.png)![](images/326_fake.png)![](images/531_fake.png)![](images/708_fake.png)![](images/067_fake.png)![](images/074_fake.png)![](images/210_fake.png)![](images/351_fake.png)![](images/471_fake.png)![](images/515_fake.png)![](images/584_fake.png)![](images/606_fake.png)![](images/722_fake.png)![](images/883_fake.png)
+![](images/1002_fake.png)![](images/998_fake.png)![](images/037_fake.png)![](images/326_fake.png)![](images/531_fake.png)![](images/708_fake.png)![](images/067_fake.png)![](images/074_fake.png)![](images/210_fake.png)![](images/351_fake.png)![](images/471_fake.png)![](images/515_fake.png)![](images/584_fake.png)![](images/606_fake.png)![](images/722_fake.png)![](images/883_fake.png)![](images/018_fake.png)
 
 ## Next Steps
 * Testing the architectures

@@ -8,11 +8,11 @@ from PIL import Image
 import time
 import os
 
-BATCH_SIZE = 64
+BATCH_SIZE = 16
 NUM_EPOCHS = 300
 INPUT_DIM = 100
 DATA_PATH = './data/gen4up/'
-RESULT_PATH = './results/pokemon/'
+RESULT_PATH = './results/gen4up/'
 CHECKPOINT_DIR = './checkpoint/'
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 

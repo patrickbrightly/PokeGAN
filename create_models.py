@@ -45,6 +45,6 @@ def build_discriminator():
     #flatten
     model.add(layers.Flatten())
     #output
-    model.add(layers.Dense(1, activation='sigmoid'))
+    model.add(layers.Dense(1))
     model.summary()
     return model

@@ -92,6 +92,6 @@ def graph_losses(gen_loss,disc_loss,path):
     plt.xlabel('batch')
     plt.ylabel('loss')
     plt.legend()
-    plt.show()
     plt.savefig(os.path.join(path,'losses.png'))
+    # plt.show()
     plt.close()

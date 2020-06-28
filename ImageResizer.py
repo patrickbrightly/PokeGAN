@@ -30,8 +30,8 @@ class ImageResizer:
             except UnidentifiedImageError:
                 print(str(old_img), 'could not be converted. Please check filetype')
 
-inpath = './data/gen4up/'
-outpath = './data/gen4up/'
+inpath = './data/sugimori/'
+outpath = './data/sugimori/'
 
 resizer = ImageResizer((64,64))
 resizer.resize(inpath,outpath)
